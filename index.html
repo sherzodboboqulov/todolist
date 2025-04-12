@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList</title>
+    <style>
+        .delBtn::before {
+            content: "O'chirib tashlash";
+        }
+    </style>
+</head>
+<body>
+    
+    <input type="text" class="todo">
+    <button class="add_todo">Add Todo</button>
+
+    <ul></ul>
+
+    <script>
+        let btn = document.querySelector(".add_todo")
+        let ul = document.querySelector("ul")
+
+        btn.onclick = () => {
+            let newtodo = document.querySelector(".todo")
+            let newli = document.createElement("li")
+            newli.innerHTML = newtodo.value + `<button onclick="deleteMe(this.closest('li'))" class="delBtn"></button>`
+            ul.appendChild(newli)
+            newtodo.value = ""
+        }
+
+        function deleteMe(x) {
+            let z = confirm(`Chindan ham "${x.innerText}" todosini o'chirmoqchimisiz?`)
+
+            if (z) {
+                ul.removeChild(x)
+            }
+        }
+    </script>
+
+</body>
+</html>
